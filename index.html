@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On-Call Ensembles</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        h2 { text-align: center; }
+        ul { list-style: none; padding: 0; }
+        li { display: flex; justify-content: space-between; padding: 8px; border: 1px solid #ddd; margin-bottom: 5px; }
+        button { margin-left: 10px; cursor: pointer; }
+        input { width: 80%; padding: 8px; }
+    </style>
+</head>
+<body>
+
+    <h2>On-Call Ensembles</h2>
+    <ul id="ensembleList"></ul>
+
+    <input type="text" id="ensembleInput" placeholder="Enter ensemble name">
+    <button onclick="addEnsemble()">Add</button>
+
+    <script>
+        async function loadEnsembles() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                const list = document.getElementById("ensembleList");
+                list.innerHTML = "";
+
+                data.ensembles.forEach((team, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <span>${team}</span>
+                        <button onclick="editEnsemble(${index})">Edit</button>
+                        <button onclick="deleteEnsemble(${index})">Delete</button>
+                    `;
+                    list.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Error loading ensembles:", error);
+            }
+        }
+
+        function addEnsemble() {
+            alert("Editing is manual. Update data.json and push changes to Git.");
+        }
+
+        function editEnsemble(index) {
+            alert("Editing is manual. Update data.json and push changes to Git.");
+        }
+
+        function deleteEnsemble(index) {
+            alert("Editing is manual. Update data.json and push changes to Git.");
+        }
+
+        document.addEventListener("DOMContentLoaded", loadEnsembles);
+    </script>
+
+</body>
+</html>
